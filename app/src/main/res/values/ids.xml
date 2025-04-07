@@ -5,4 +5,5 @@
     <item name="tvAttendanceStatus" type="id" />
     <item name="some_text_view_id" type="id" />
     <item name="tvTime" type="id" />
+    <item name="attendanceStatusTextView" type="id"/>
 </resources>

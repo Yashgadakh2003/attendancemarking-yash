@@ -1,41 +1,24 @@
 package com.example.attendancemanager;
 
+import java.util.Date;
+
 public class AttendanceRecord {
-    private String name;
-    private String date;
-    private String time;
+    private Date date;
+    private boolean present;
 
-    // Required empty constructor for Firebase
-    public AttendanceRecord() {
-    }
+    // Default constructor required for calls to DataSnapshot.getValue(AttendanceRecord.class)
+    public AttendanceRecord() {}
 
-    public AttendanceRecord(String name, String date, String time) {
-        this.name = name;
+    public AttendanceRecord(Date date, boolean present) {
         this.date = date;
-        this.time = time;
+        this.present = present;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
+    public boolean isPresent() {
+        return present;
     }
 }
