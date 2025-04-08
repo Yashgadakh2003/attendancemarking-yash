@@ -5,13 +5,12 @@ import java.util.Date;
 public class AttendanceRecord {
     private Long timestamp; // Store as Long instead of Date for Firebase compatibility
     private boolean present;
+    private String rollNumber;
 
-    // Empty constructor for Firebase
-    public AttendanceRecord() {}
-
-    public AttendanceRecord(Date date, boolean present) {
+    public AttendanceRecord(Date date, boolean present,String rollNumber) {
         this.timestamp = date != null ? date.getTime() : null;
         this.present = present;
+        this.rollNumber = rollNumber;
     }
 
     public Date getDate() {
@@ -30,6 +29,9 @@ public class AttendanceRecord {
         this.present = present;
     }
 
+    public String getRollNumber() {
+        return rollNumber;
+    }
     // Add these for Firebase
     public Long getTimestamp() {
         return timestamp;

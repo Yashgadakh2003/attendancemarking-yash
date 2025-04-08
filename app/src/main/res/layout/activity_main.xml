@@ -18,7 +18,7 @@
         android:id="@+id/editTextMainName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Your Name"
+        android:hint="Enter Your Roll number to view attendance"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:layout_marginBottom="16dp"/>

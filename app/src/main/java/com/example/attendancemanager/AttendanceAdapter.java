@@ -7,7 +7,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.ViewHolder> {
 
@@ -29,8 +33,14 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AttendanceRecord record = attendanceList.get(position);
-        holder.textViewDate.setText(record.getDate().toString()); // Format date as needed
-        holder.textViewStatus.setText(record.isPresent() ? "Present" : "Absent");
+        Date date = record.getDate();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+
+        holder.tvDate.setText("Date: " + dateFormat.format(date));
+        holder.tvTime.setText("Time: " + timeFormat.format(date));
+        holder.tvName.setText("Roll Number: " + record.getRollNumber());
     }
 
     @Override
@@ -45,13 +55,15 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewDate;
-        TextView textViewStatus;
+        TextView tvName;
+        TextView tvDate;
+        TextView tvTime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewDate = itemView.findViewById(R.id.textViewDate); // Ensure this ID matches your layout
-            textViewStatus = itemView.findViewById(R.id.textViewStatus); // Ensure this ID matches your layout
+            tvName = itemView.findViewById(R.id.tvName);
+            tvDate = itemView.findViewById(R.id.tvDate);
+            tvTime = itemView.findViewById(R.id.tvTime);
         }
     }
 }

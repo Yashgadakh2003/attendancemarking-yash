@@ -8,6 +8,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+
 public class AttendanceActivity extends AppCompatActivity {
 
     private EditText editTextName;
@@ -60,6 +63,17 @@ public class AttendanceActivity extends AppCompatActivity {
             attendanceMarked = true;
             markAttendanceButton.setEnabled(false);
             markAttendanceButton.setText("Attendance Marked");
+
+            AttendanceDatabaseHelper dbHelper = new AttendanceDatabaseHelper(this);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(AttendanceDatabaseHelper.COLUMN_ROLL, rollNumber);
+            values.put(AttendanceDatabaseHelper.COLUMN_DATE, System.currentTimeMillis());
+            values.put(AttendanceDatabaseHelper.COLUMN_PRESENT, 1); // assuming present is always true here
+
+            db.insert(AttendanceDatabaseHelper.TABLE_ATTENDANCE, null, values);
+            db.close();
         } else {
             Toast.makeText(this, "Attendance already marked", Toast.LENGTH_SHORT).show();
         }
