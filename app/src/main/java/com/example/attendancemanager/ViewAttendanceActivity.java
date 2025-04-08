@@ -32,6 +32,7 @@ public class ViewAttendanceActivity extends AppCompatActivity {
 
 
         textViewNoAttendance = findViewById(R.id.textViewNoAttendance);
+        recyclerViewAttendance = findViewById(R.id.recyclerViewAttendance);
 
         recyclerViewAttendance.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AttendanceAdapter(this, new ArrayList<>());
